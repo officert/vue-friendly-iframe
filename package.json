@@ -1,0 +1,31 @@
+{
+  "name": "vue-friendly-iframe",
+  "version": "0.1.0",
+  "description": "Vue component for creating dynamic async iframes",
+  "main": "friendlyIframe.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/officert/vue-friendly-iframe.git"
+  },
+  "browserify": {
+    "transform": ["vueify"]
+  },
+  "keywords": [
+    "iframe",
+    "async",
+    "dynamic",
+    "friendly iframe",
+    "vue"
+  ],
+  "author": "Tim Officer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/officert/vue-friendly-iframe/issues"
+  },
+  "homepage": "https://github.com/officert/vue-friendly-iframe#readme",
+  "peerDependencies": {},
+  "dependencies": {}
+}
