@@ -7,7 +7,7 @@
 export default {
   name: 'friendly-iframe',
   props: {
-    scriptSrc: {
+    src: {
       type: String,
       required: true
     },
@@ -23,7 +23,7 @@ export default {
   },
   computed: {},
   methods: {},
-  mounted() {
+  created() {
     this.iframeEl = document.createElement('iframe');
     this.iframeEl.setAttribute('crossorigin', 'anonymous');
     this.iframeEl.setAttribute('scrolling', 'no');
@@ -32,7 +32,7 @@ export default {
     this.$el.replaceWith(this.iframeEl);
 
     const iframeDoc = this.iframeEl.contentWindow.document;
-    iframeDoc.open().write(`<body onload="window.location.href='${this.scriptSrc}'"></body>`);
+    iframeDoc.open().write(`<body onload="window.location.href='${this.src}'"></body>`);
 
     iframeDoc.close(); //iframe onload event happens
 
