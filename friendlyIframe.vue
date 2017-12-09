@@ -23,7 +23,7 @@ export default {
   },
   computed: {},
   methods: {},
-  created() {
+  mounted() {
     this.iframeEl = document.createElement('iframe');
     this.iframeEl.setAttribute('crossorigin', 'anonymous');
     this.iframeEl.setAttribute('scrolling', 'no');
