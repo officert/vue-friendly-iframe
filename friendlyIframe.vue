@@ -28,6 +28,9 @@ export default {
     this.iframeEl.setAttribute('crossorigin', 'anonymous');
     this.iframeEl.setAttribute('scrolling', 'no');
     this.iframeEl.setAttribute('target', '_parent');
+    this.iframeEl.setAttribute('style', 'visibility: hidden;');
+    this.iframeEl.setAttribute('onload', 'this.style.visibility = "visible";');
+
     if (this.className) this.iframeEl.setAttribute('class', this.className);
     this.$el.replaceWith(this.iframeEl);
 
