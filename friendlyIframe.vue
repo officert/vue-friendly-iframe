@@ -4,6 +4,12 @@
 </template>
 
 <script>
+import uuidV1 from 'uuid/v1';
+
+function generateGuid() {
+  return uuidV1();
+}
+
 export default {
   name: 'friendly-iframe',
   props: {
@@ -18,12 +24,29 @@ export default {
   },
   data() {
     return {
-      iframeEl: null
+      iframeEl: null,
+      iframeLoadedMessage: `LOADED_IFRAME_${generateGuid()}`
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    listenForEvents() {
+      // Create IE + others compatible event handler
+      const eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
+      const eventer = window[eventMethod];
+      const messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
+
+      // Listen to message from child window
+      eventer(messageEvent, event => {
+        if (event.data === this.iframeLoadedMessage) {
+          this.$emit('load');
+        }
+      }, false);
+    }
+  },
   mounted() {
+    this.listenForEvents();
+
     this.iframeEl = document.createElement('iframe');
     this.iframeEl.setAttribute('crossorigin', 'anonymous');
     this.iframeEl.setAttribute('scrolling', 'no');
@@ -35,11 +58,9 @@ export default {
     this.$el.replaceWith(this.iframeEl);
 
     const iframeDoc = this.iframeEl.contentWindow.document;
-    iframeDoc.open().write(`<body onload="window.location.href='${this.src}'"></body>`);
+    iframeDoc.open().write(`<body onload="window.location.href='${this.src}'; parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>`);
 
     iframeDoc.close(); //iframe onload event happens
-
-    this.$emit('load');
   }
 };
 </script>
