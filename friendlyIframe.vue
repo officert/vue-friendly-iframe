@@ -41,7 +41,7 @@ export default {
         if (event.data === this.iframeLoadedMessage) {
           this.$emit('load');
 
-          this.iframeEl.setAttribute('style', 'visibility: visible; position: relative; top: auto;');
+          this.iframeEl.setAttribute('style', 'visibility: visible;');
         }
       }, false);
     }
@@ -54,7 +54,6 @@ export default {
     this.iframeEl.setAttribute('scrolling', 'no');
     this.iframeEl.setAttribute('target', '_parent');
     this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
-    // this.iframeEl.setAttribute('onload', 'this.style.visibility = "visible";');
 
     if (this.className) this.iframeEl.setAttribute('class', this.className);
     this.$el.replaceWith(this.iframeEl);
