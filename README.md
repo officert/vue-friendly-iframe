@@ -17,3 +17,7 @@ import VueFriendlyIframe from 'vue-friendly-iframe';
 
 Vue.component('vue-friendly-iframe', VueFriendlyIframe);
 ```
+
+```html
+<vue-friendly-iframe :className="'my-awesome-iframe'" :src="'https://www.google.com/'"></vue-friendly-iframe>
+```
