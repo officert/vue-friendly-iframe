@@ -1,5 +1,5 @@
 /*!
- * vue-friendly-iframe v0.8.0 (https://github.com/officert/vue-friendly-iframe)
+ * vue-friendly-iframe v0.9.0 (https://github.com/officert/vue-friendly-iframe)
  * (c) 2018 Tim Officer
  * Released under the MIT License.
  */
@@ -106,7 +106,7 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(3),
   /* template */
-  __webpack_require__(8),
+  __webpack_require__(9),
   /* scopeId */
   null,
   /* cssModules */
@@ -188,6 +188,10 @@ var _v = __webpack_require__(4);
 
 var _v2 = _interopRequireDefault(_v);
 
+var _utils = __webpack_require__(8);
+
+var _utils2 = _interopRequireDefault(_utils);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function generateGuid() {
@@ -214,7 +218,40 @@ exports.default = {
   },
 
   computed: {},
+  watch: {
+    src: function src() {
+      this.reinitIframe(this);
+    }
+  },
   methods: {
+    removeIframe: function removeIframe() {
+      while (this.$el.firstChild) {
+        this.$el.removeChild(this.$el.firstChild);
+      }
+    },
+    setIframeUrl: function setIframeUrl() {
+      var iframeDoc = this.iframeEl.contentWindow.document;
+      iframeDoc.open().write('<body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>');
+
+      iframeDoc.close();
+    },
+
+    reinitIframe: _utils2.default.debounce(function (vm) {
+      vm.removeIframe();
+      vm.initIframe();
+    }, 200),
+    initIframe: function initIframe() {
+      this.iframeEl = document.createElement('iframe');
+      this.iframeEl.setAttribute('crossorigin', 'anonymous');
+      this.iframeEl.setAttribute('scrolling', 'no');
+      this.iframeEl.setAttribute('target', '_parent');
+      this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
+
+      if (this.className) this.iframeEl.setAttribute('class', this.className);
+      this.$el.appendChild(this.iframeEl);
+
+      this.setIframeUrl();
+    },
     listenForEvents: function listenForEvents() {
       var _this = this;
 
@@ -226,6 +263,8 @@ exports.default = {
         if (event.data === _this.iframeLoadedMessage) {
           _this.$emit('load');
 
+          console.log('LOAD');
+
           _this.iframeEl.setAttribute('style', 'visibility: visible;');
         }
       }, false);
@@ -234,19 +273,7 @@ exports.default = {
   mounted: function mounted() {
     this.listenForEvents();
 
-    this.iframeEl = document.createElement('iframe');
-    this.iframeEl.setAttribute('crossorigin', 'anonymous');
-    this.iframeEl.setAttribute('scrolling', 'no');
-    this.iframeEl.setAttribute('target', '_parent');
-    this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
-
-    if (this.className) this.iframeEl.setAttribute('class', this.className);
-    this.$el.replaceWith(this.iframeEl);
-
-    var iframeDoc = this.iframeEl.contentWindow.document;
-    iframeDoc.open().write('<body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>');
-
-    iframeDoc.close();
+    this.initIframe();
   }
 };
 module.exports = exports['default'];
@@ -455,10 +482,51 @@ module.exports = bytesToUuid;
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function debounce(func, wait, immediate) {
+  var timeout = void 0;
+
+  return function () {
+    var context = this;
+
+    var args = arguments;
+
+    var later = function later() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+
+    var callNow = immediate && !timeout;
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(context, args);
+  };
+}
+
+exports.default = {
+  debounce: debounce
+};
+module.exports = exports["default"];
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div')
+  return _c('div', {
+    staticClass: "vue-friendly-iframe"
+  })
 },staticRenderFns: []}
 
 /***/ })

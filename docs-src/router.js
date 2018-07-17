@@ -19,6 +19,6 @@ const routes = [{
 ];
 
 export default new VueRouter({
-  base: '/vue-slideout-panel/',
+  base: '/vue-friendly-iframe/',
   routes
 });
