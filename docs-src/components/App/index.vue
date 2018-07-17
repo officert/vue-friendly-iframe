@@ -37,7 +37,7 @@ input[type="submit"] {
 }
 
 button[disabled],
-input[type="submit"][disabled] {
+input[type="submit"][disabled], input[readonly] {
     background: #a0d4de;
     border-color: #a0d4de;
     cursor: default;

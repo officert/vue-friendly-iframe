@@ -7,7 +7,8 @@ export default {
   data() {
     return {
       example1Form: {
-        src: 'https://www.pexels.com/search/cat/'
+        src: 'https://www.pexels.com/search',
+        searchTerm: 'tiger'
       }
     }
   },

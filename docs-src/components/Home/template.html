@@ -16,7 +16,17 @@
     </div>
   </section>
   <section class="main-content">
-    <h2 style="margin-top: 2rem">Installation</h2>
+    <h2 style="margin-top: 2rem">Description</h2>
+    <div>
+      <p>
+        Dynamic asnyc iframes are a technique for creating non-blocking, super fast loading iframes. Fast loading iframes are essential for building embedded widgets.
+      </p>
+      <p>
+        For a full description of dynamic asnyc iframes take a look at this article written by Aaron Peters:
+        <a href="http://www.aaronpeters.nl/blog/iframe-loading-techniques-performance?%3E#dynamic" target="_blank">http://www.aaronpeters.nl/blog/iframe-loading-techniques-performance?%3E#dynamic</a>
+      </p>
+    </div>
+    <h2>Installation</h2>
     <div class="highlight">
       <pre class="highlight">npm install vue-friendly-iframe --save-dev</pre>
     </div>
@@ -43,12 +53,16 @@ Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
     <div class="example-1">
       <form>
         <div class="form-group">
+          <label>Enter a search term:</label>
+          <input class="form-control" v-model="example1Form.searchTerm">
+        </div>
+        <div class="form-group">
           <label>Iframe URL:</label>
-          <input class="form-control" v-model="example1Form.src" />
+          <input class="form-control" :value="example1Form.src + '/' + example1Form.searchTerm" readonly="readonly">
         </div>
       </form>
       <div>
-        <vue-friendly-iframe :src="example1Form.src"></vue-friendly-iframe>
+        <vue-friendly-iframe :src="example1Form.src + '/' + example1Form.searchTerm"></vue-friendly-iframe>
       </div>
     </div>
   </section>
