@@ -1,7 +1,7 @@
 # vue2-slideout-panel
 > Vue js component for creating dynamic async iframes based on Aaron Peter's article: http://www.aaronpeters.nl/blog/iframe-loading-techniques-performance?%3E#dynamic
 
-[![npm version](https://badge.fury.io/js/vue2-slideout-panel.svg)](https://badge.fury.io/js/vue2-slideout-panel)
+[![npm version](https://badge.fury.io/js/vue-friendly-iframe.svg)](https://badge.fury.io/js/vue-friendly-iframe)
 
 ## Documentation
 [https://github.com/officert/vue-friendly-iframe](https://github.com/officert/vue-friendly-iframe)
