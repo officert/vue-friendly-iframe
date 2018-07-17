@@ -1,0 +1,55 @@
+<div id="home">
+  <section class="page-header">
+    <div class="logo">
+      <img src="https://vuejs.org/images/logo.png" />
+    </div>
+    <h1 class="project-name">
+      vue-friendly-iframe
+    </h1>
+    <h2 class="project-tagline">
+      Vue.js component for creating dynamic async iframes.
+    </h2>
+    <div>
+      <a href="https://github.com/officert/vue-friendly-iframe" class="btn">View on GitHub</a>
+      <a href="https://github.com/officert/vue-friendly-iframe/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/officert/vue-friendly-iframe/tarball/master" class="btn">Download .tar.gz</a>
+    </div>
+  </section>
+  <section class="main-content">
+    <h2 style="margin-top: 2rem">Installation</h2>
+    <div class="highlight">
+      <pre class="highlight">npm install vue-friendly-iframe --save-dev</pre>
+    </div>
+    <p>
+      1) Download from NPM
+    </p>
+    <h2>Usage</h2>
+    <p>
+      1) Register the Vue Friendly Iframe component:
+    </p>
+    <div class="highlight">
+      <pre class="highlight">import Vue from 'vue';
+import VueFriendlyIframe from 'vue-friendly-iframe';
+
+Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
+      <p>
+        2) In your HTML add the component:
+      </p>
+      <div class="highlight">
+        <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src"&gt;&lt;/vue-friendly-iframe&gt;</pre>
+      </div>
+    </div>
+    <h2>Example</h2>
+    <div class="example-1">
+      <form>
+        <div class="form-group">
+          <label>Iframe URL:</label>
+          <input class="form-control" v-model="example1Form.src" />
+        </div>
+      </form>
+      <div>
+        <vue-friendly-iframe :src="example1Form.src"></vue-friendly-iframe>
+      </div>
+    </div>
+  </section>
+</div>
