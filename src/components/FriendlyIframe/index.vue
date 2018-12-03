@@ -55,7 +55,6 @@ export default {
     initIframe() {
       this.iframeEl = document.createElement('iframe');
       this.iframeEl.setAttribute('crossorigin', 'anonymous');
-      this.iframeEl.setAttribute('scrolling', 'no');
       this.iframeEl.setAttribute('target', '_parent');
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
 
