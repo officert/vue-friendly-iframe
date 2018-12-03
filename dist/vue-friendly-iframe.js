@@ -1,5 +1,5 @@
 /*!
- * vue-friendly-iframe v0.9.0 (https://github.com/officert/vue-friendly-iframe)
+ * vue-friendly-iframe v0.10.0 (https://github.com/officert/vue-friendly-iframe)
  * (c) 2018 Tim Officer
  * Released under the MIT License.
  */
@@ -243,7 +243,6 @@ exports.default = {
     initIframe: function initIframe() {
       this.iframeEl = document.createElement('iframe');
       this.iframeEl.setAttribute('crossorigin', 'anonymous');
-      this.iframeEl.setAttribute('scrolling', 'no');
       this.iframeEl.setAttribute('target', '_parent');
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
 
