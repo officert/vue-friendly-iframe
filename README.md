@@ -4,11 +4,10 @@
 [![npm version](https://badge.fury.io/js/vue-friendly-iframe.svg)](https://badge.fury.io/js/vue-friendly-iframe)
 
 ## Documentation
-[https://github.com/officert/vue-friendly-iframe](https://github.com/officert/vue-friendly-iframe)
+[https://officert.github.io/vue-friendly-iframe](https://officert.github.io/vue-friendly-iframe)
 
 ## Demo
-
-[https://github.com/officert/vue-friendly-iframe](https://github.com/officert/vue-friendly-iframe)
+[https://officert.github.io/vue-friendly-iframe](https://officert.github.io/vue-friendly-iframe)
 
 ## Requirements
 * [Vue.js](http://vuejs.org/) (^v2.1.4)
