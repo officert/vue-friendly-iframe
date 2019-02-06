@@ -14,8 +14,8 @@ export default {
 
 <style lang="less">
 .btn-xl {
-  padding: 20px 30px;
-  font-size: 22px;
+    padding: 20px 30px;
+    font-size: 22px;
 }
 
 button,
@@ -37,7 +37,8 @@ input[type="submit"] {
 }
 
 button[disabled],
-input[type="submit"][disabled], input[readonly] {
+input[type="submit"][disabled],
+input[readonly] {
     background: #a0d4de;
     border-color: #a0d4de;
     cursor: default;
@@ -79,5 +80,16 @@ button.hide-loader .hidden {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+}
+
+.iframe-wrapper {
+    border: 1px solid gray;
+    height: 600px;
+
+    .iframe-loading {
+        padding: 60px 0;
+        text-align: center;
+        color: black;
+    }
 }
 </style>

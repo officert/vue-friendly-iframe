@@ -1,6 +1,6 @@
 /*!
- * vue-friendly-iframe v0.10.0 (https://github.com/officert/vue-friendly-iframe)
- * (c) 2018 Tim Officer
+ * vue-friendly-iframe v0.11.0 (https://github.com/officert/vue-friendly-iframe)
+ * (c) 2019 Tim Officer
  * Released under the MIT License.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -230,8 +230,14 @@ exports.default = {
       }
     },
     setIframeUrl: function setIframeUrl() {
+      var _this = this;
+
       var iframeDoc = this.iframeEl.contentWindow.document;
       iframeDoc.open().write('<body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>');
+
+      iframeDoc.onload = function (e) {
+        _this.$emit('load', e);
+      };
 
       iframeDoc.close();
     },
@@ -252,19 +258,17 @@ exports.default = {
       this.setIframeUrl();
     },
     listenForEvents: function listenForEvents() {
-      var _this = this;
+      var _this2 = this;
 
       var eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
       var eventer = window[eventMethod];
       var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
 
       eventer(messageEvent, function (event) {
-        if (event.data === _this.iframeLoadedMessage) {
-          _this.$emit('load');
+        if (event.data === _this2.iframeLoadedMessage) {
+          _this2.$emit('load');
 
-          console.log('LOAD');
-
-          _this.iframeEl.setAttribute('style', 'visibility: visible;');
+          _this2.iframeEl.setAttribute('style', 'visibility: visible;');
         }
       }, false);
     }

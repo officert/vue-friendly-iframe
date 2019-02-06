@@ -46,6 +46,10 @@ export default {
       const iframeDoc = this.iframeEl.contentWindow.document;
       iframeDoc.open().write(`<body onload="window.location.href='${this.src}'; parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>`);
 
+      iframeDoc.onload = (e) => {
+        this.$emit('load', e);
+      };
+
       iframeDoc.close(); //iframe onload event happens
     },
     reinitIframe: utils.debounce(vm => {
@@ -73,8 +77,6 @@ export default {
       eventer(messageEvent, event => {
         if (event.data === this.iframeLoadedMessage) {
           this.$emit('load');
-
-          console.log('LOAD');
 
           this.iframeEl.setAttribute('style', 'visibility: visible;');
         }

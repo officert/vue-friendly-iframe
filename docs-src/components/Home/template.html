@@ -46,7 +46,7 @@ Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
         2) In your HTML add the component:
       </p>
       <div class="highlight">
-        <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src"&gt;&lt;/vue-friendly-iframe&gt;</pre>
+        <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src" @load="onLoad" &gt;&lt;/vue-friendly-iframe&gt;</pre>
       </div>
     </div>
     <h2>Example</h2>
@@ -61,8 +61,11 @@ Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
           <input class="form-control" :value="example1Form.src + '/' + example1Form.searchTerm" readonly="readonly">
         </div>
       </form>
-      <div>
-        <vue-friendly-iframe :src="example1Form.src + '/' + example1Form.searchTerm"></vue-friendly-iframe>
+      <div class="iframe-wrapper">
+        <div class="iframe-loading" v-if="iframeLoading">
+          iframe loading...
+        </div>
+        <vue-friendly-iframe :style="{ 'display' : iframeLoading ? 'none' : 'block' }" :src="example1Form.src + '/' + example1Form.searchTerm" @load="onLoad"></vue-friendly-iframe>
       </div>
     </div>
   </section>

@@ -9,10 +9,17 @@ export default {
       example1Form: {
         src: 'https://www.pexels.com/search',
         searchTerm: 'tiger'
-      }
+      },
+      iframeLoading: true
     }
   },
-  methods: {}
+  methods: {
+    onLoad() {
+      console.log('iframe loaded');
+
+      this.iframeLoading = false;
+    }
+  }
 };
 </script>
 
