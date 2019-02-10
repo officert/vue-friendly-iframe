@@ -10,7 +10,8 @@ export default {
         src: 'https://www.pexels.com/search',
         searchTerm: 'tiger'
       },
-      iframeLoading: true
+      iframeLoading: true,
+      documentLoading: true
     }
   },
   methods: {
@@ -18,6 +19,14 @@ export default {
       console.log('iframe loaded');
 
       this.iframeLoading = false;
+    },
+    onIframeLoad() {
+      console.log('iframe loaded');
+    },
+    onDocumentLoad() {
+      console.log('document loaded');
+
+      this.documentLoading = false;
     }
   }
 };

@@ -1,5 +1,5 @@
 /*!
- * vue-friendly-iframe v0.11.0 (https://github.com/officert/vue-friendly-iframe)
+ * vue-friendly-iframe v0.12.0 (https://github.com/officert/vue-friendly-iframe)
  * (c) 2019 Tim Officer
  * Released under the MIT License.
  */
@@ -213,7 +213,8 @@ exports.default = {
   data: function data() {
     return {
       iframeEl: null,
-      iframeLoadedMessage: 'LOADED_IFRAME_' + generateGuid()
+      iframeLoadedMessage: 'IFRAME_LOADED_' + generateGuid(),
+      iframeOnReadyStateChangeMessage: 'IFRAME_ON_READ_STATE_CHANGE_' + generateGuid()
     };
   },
 
@@ -230,14 +231,8 @@ exports.default = {
       }
     },
     setIframeUrl: function setIframeUrl() {
-      var _this = this;
-
       var iframeDoc = this.iframeEl.contentWindow.document;
-      iframeDoc.open().write('<body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>');
-
-      iframeDoc.onload = function (e) {
-        _this.$emit('load', e);
-      };
+      iframeDoc.open().write('\n          <body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>\n          <script>\n            window.document.onreadystatechange = function () {\n              if(window.document.readyState === \'complete\') {\n                parent.postMessage(\'' + this.iframeOnReadyStateChangeMessage + '\', \'*\')\n              }\n            };\n          </script>\n          ');
 
       iframeDoc.close();
     },
@@ -251,24 +246,30 @@ exports.default = {
       this.iframeEl.setAttribute('crossorigin', 'anonymous');
       this.iframeEl.setAttribute('target', '_parent');
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
-
       if (this.className) this.iframeEl.setAttribute('class', this.className);
+
       this.$el.appendChild(this.iframeEl);
 
       this.setIframeUrl();
     },
     listenForEvents: function listenForEvents() {
-      var _this2 = this;
+      var _this = this;
 
       var eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
       var eventer = window[eventMethod];
       var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
 
       eventer(messageEvent, function (event) {
-        if (event.data === _this2.iframeLoadedMessage) {
-          _this2.$emit('load');
+        if (event.data === _this.iframeLoadedMessage) {
+          _this.$emit('iframe-load');
 
-          _this2.iframeEl.setAttribute('style', 'visibility: visible;');
+          _this.iframeEl.setAttribute('style', 'visibility: visible;');
+        }
+
+        if (event.data === _this.iframeOnReadyStateChangeMessage) {
+          _this.$emit('document-load');
+
+          _this.$emit('load');
         }
       }, false);
     }

@@ -46,8 +46,15 @@ Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
         2) In your HTML add the component:
       </p>
       <div class="highlight">
-        <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src" @load="onLoad" &gt;&lt;/vue-friendly-iframe&gt;</pre>
+        <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src" @load="onLoad" @document-load="onDocumentLoad"&gt;&lt;/vue-friendly-iframe&gt;</pre>
       </div>
+    </div>
+    <h2>Events</h2>
+    <p>
+      Events are emitted from the component so you can hook into the iframe's load event and the inner document onreadystatechange event.
+    </p>
+    <div class="highlight">
+      <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src" @load="onLoad" @document-load="onDocumentLoad"&gt;&lt;/vue-friendly-iframe&gt;</pre>
     </div>
     <h2>Example</h2>
     <div class="example-1">
@@ -61,11 +68,25 @@ Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
           <input class="form-control" :value="example1Form.src + '/' + example1Form.searchTerm" readonly="readonly">
         </div>
       </form>
+      <div class="loading-states">
+        <div v-if="iframeLoading">
+          Iframe loading...
+        </div>
+        <div v-if="!iframeLoading">
+          Iframe finished loading
+        </div>
+        <div v-if="documentLoading">
+          Inner document loading...
+        </div>
+        <div v-if="!documentLoading">
+          Inner document finished loading
+        </div>
+      </div>
       <div class="iframe-wrapper">
         <div class="iframe-loading" v-if="iframeLoading">
           iframe loading...
         </div>
-        <vue-friendly-iframe :style="{ 'display' : iframeLoading ? 'none' : 'block' }" :src="example1Form.src + '/' + example1Form.searchTerm" @load="onLoad"></vue-friendly-iframe>
+        <vue-friendly-iframe :style="{ 'display' : iframeLoading ? 'none' : 'block' }" :src="example1Form.src + '/' + example1Form.searchTerm" @load="onLoad" @iframe-load="onIframeLoad" @document-load="onDocumentLoad"></vue-friendly-iframe>
       </div>
     </div>
   </section>

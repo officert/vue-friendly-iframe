@@ -27,7 +27,8 @@ export default {
   data() {
     return {
       iframeEl: null,
-      iframeLoadedMessage: `LOADED_IFRAME_${generateGuid()}`
+      iframeLoadedMessage: `IFRAME_LOADED_${generateGuid()}`,
+      iframeOnReadyStateChangeMessage: `IFRAME_ON_READ_STATE_CHANGE_${generateGuid()}`
     };
   },
   computed: {},
@@ -44,11 +45,19 @@ export default {
     },
     setIframeUrl() {
       const iframeDoc = this.iframeEl.contentWindow.document;
-      iframeDoc.open().write(`<body onload="window.location.href='${this.src}'; parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>`);
-
-      iframeDoc.onload = (e) => {
-        this.$emit('load', e);
-      };
+      iframeDoc.open()
+        .write(
+          `
+          <body onload="window.location.href='${this.src}'; parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>
+          <script>
+            window.document.onreadystatechange = function () {
+              if(window.document.readyState === 'complete') {
+                parent.postMessage('${this.iframeOnReadyStateChangeMessage}', '*')
+              }
+            };
+          <\/script>
+          `
+        );
 
       iframeDoc.close(); //iframe onload event happens
     },
@@ -61,8 +70,8 @@ export default {
       this.iframeEl.setAttribute('crossorigin', 'anonymous');
       this.iframeEl.setAttribute('target', '_parent');
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
-
       if (this.className) this.iframeEl.setAttribute('class', this.className);
+
       this.$el.appendChild(this.iframeEl);
 
       this.setIframeUrl();
@@ -76,9 +85,15 @@ export default {
       // Listen to message from child window
       eventer(messageEvent, event => {
         if (event.data === this.iframeLoadedMessage) {
-          this.$emit('load');
+          this.$emit('iframe-load');
 
           this.iframeEl.setAttribute('style', 'visibility: visible;');
+        }
+
+        if (event.data === this.iframeOnReadyStateChangeMessage) {
+          this.$emit('document-load');
+
+          this.$emit('load');
         }
       }, false);
     }
