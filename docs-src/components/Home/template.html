@@ -86,7 +86,7 @@ Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
         <div class="iframe-loading" v-if="iframeLoading">
           iframe loading...
         </div>
-        <vue-friendly-iframe :style="{ 'display' : iframeLoading ? 'none' : 'block' }" :src="example1Form.src + '/' + example1Form.searchTerm" @load="onLoad" @iframe-load="onIframeLoad" @document-load="onDocumentLoad"></vue-friendly-iframe>
+        <vue-friendly-iframe :style="{ 'display' : iframeLoading ? 'none' : 'block' }" :src="example1Form.src + '/' + example1Form.searchTerm" @load="onLoad" @iframe-load="onIframeLoad" @document-load="onDocumentLoad" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen="allowfullscreen"></vue-friendly-iframe>
       </div>
     </div>
   </section>

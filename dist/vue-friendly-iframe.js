@@ -1,5 +1,5 @@
 /*!
- * vue-friendly-iframe v0.12.0 (https://github.com/officert/vue-friendly-iframe)
+ * vue-friendly-iframe v0.13.0 (https://github.com/officert/vue-friendly-iframe)
  * (c) 2019 Tim Officer
  * Released under the MIT License.
  */
@@ -208,6 +208,22 @@ exports.default = {
     className: {
       type: String,
       required: false
+    },
+    frameborder: {
+      type: String,
+      required: false
+    },
+    gesture: {
+      type: String,
+      required: false
+    },
+    allow: {
+      type: String,
+      required: false
+    },
+    allowfullscreen: {
+      type: String,
+      required: false
     }
   },
   data: function data() {
@@ -247,6 +263,11 @@ exports.default = {
       this.iframeEl.setAttribute('target', '_parent');
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
       if (this.className) this.iframeEl.setAttribute('class', this.className);
+      if (this.class) this.iframeEl.setAttribute('class', this.class);
+      if (this.frameborder) this.iframeEl.setAttribute('frameborder', this.frameborder);
+      if (this.gesture) this.iframeEl.setAttribute('gesture', this.gesture);
+      if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
+      if (this.allowfullscreen) this.iframeEl.setAttribute('allowfullscreen', this.allowfullscreen);
 
       this.$el.appendChild(this.iframeEl);
 
