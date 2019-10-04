@@ -19,6 +19,16 @@ export default {
       type: String,
       required: true
     },
+    crossorigin: {
+      type: String,
+      required: false,
+      default: 'anonymous'
+    },
+    target: {
+      type: String,
+      required: false,
+      default: '_parent'
+    },
     className: {
       type: String,
       required: false
@@ -36,6 +46,10 @@ export default {
       required: false
     },
     allowfullscreen: {
+      type: String,
+      required: false
+    },
+    scrolling: {
       type: String,
       required: false
     }
@@ -83,8 +97,9 @@ export default {
     }, 200),
     initIframe() {
       this.iframeEl = document.createElement('iframe');
-      this.iframeEl.setAttribute('crossorigin', 'anonymous');
-      this.iframeEl.setAttribute('target', '_parent');
+      this.iframeEl.setAttribute('iframe-src', this.src);
+      this.iframeEl.setAttribute('crossorigin', this.crossorigin);
+      this.iframeEl.setAttribute('target', this.target);
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
       if (this.className) this.iframeEl.setAttribute('class', this.className);
       if (this.class) this.iframeEl.setAttribute('class', this.class);
@@ -92,6 +107,7 @@ export default {
       if (this.gesture) this.iframeEl.setAttribute('gesture', this.gesture);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
       if (this.allowfullscreen) this.iframeEl.setAttribute('allowfullscreen', this.allowfullscreen);
+      if (this.scrolling) this.iframeEl.setAttribute('scrolling', this.scrolling);
 
       this.$el.appendChild(this.iframeEl);
 

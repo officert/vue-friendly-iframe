@@ -1,5 +1,5 @@
 /*!
- * vue-friendly-iframe v0.13.0 (https://github.com/officert/vue-friendly-iframe)
+ * vue-friendly-iframe v0.14.0 (https://github.com/officert/vue-friendly-iframe)
  * (c) 2019 Tim Officer
  * Released under the MIT License.
  */
@@ -205,6 +205,16 @@ exports.default = {
       type: String,
       required: true
     },
+    crossorigin: {
+      type: String,
+      required: false,
+      default: 'anonymous'
+    },
+    target: {
+      type: String,
+      required: false,
+      default: '_parent'
+    },
     className: {
       type: String,
       required: false
@@ -222,6 +232,10 @@ exports.default = {
       required: false
     },
     allowfullscreen: {
+      type: String,
+      required: false
+    },
+    scrolling: {
       type: String,
       required: false
     }
@@ -259,8 +273,9 @@ exports.default = {
     }, 200),
     initIframe: function initIframe() {
       this.iframeEl = document.createElement('iframe');
-      this.iframeEl.setAttribute('crossorigin', 'anonymous');
-      this.iframeEl.setAttribute('target', '_parent');
+      this.iframeEl.setAttribute('iframe-src', this.src);
+      this.iframeEl.setAttribute('crossorigin', this.crossorigin);
+      this.iframeEl.setAttribute('target', this.target);
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
       if (this.className) this.iframeEl.setAttribute('class', this.className);
       if (this.class) this.iframeEl.setAttribute('class', this.class);
@@ -268,6 +283,7 @@ exports.default = {
       if (this.gesture) this.iframeEl.setAttribute('gesture', this.gesture);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
       if (this.allowfullscreen) this.iframeEl.setAttribute('allowfullscreen', this.allowfullscreen);
+      if (this.scrolling) this.iframeEl.setAttribute('scrolling', this.scrolling);
 
       this.$el.appendChild(this.iframeEl);
 
