@@ -27,7 +27,7 @@
       </p>
     </div>
     <h2>Installation</h2>
-    <div class="highlight">
+    <div>
       <pre class="highlight">npm install vue-friendly-iframe --save-dev</pre>
     </div>
     <p>
@@ -37,7 +37,7 @@
     <p>
       1) Register the Vue Friendly Iframe component:
     </p>
-    <div class="highlight">
+    <div>
       <pre class="highlight">import Vue from 'vue';
 import VueFriendlyIframe from 'vue-friendly-iframe';
 
@@ -45,16 +45,16 @@ Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
       <p>
         2) In your HTML add the component:
       </p>
-      <div class="highlight">
-        <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src" @load="onLoad" @document-load="onDocumentLoad"&gt;&lt;/vue-friendly-iframe&gt;</pre>
+      <div>
+        <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src" @load="onLoad"&gt;&lt;/vue-friendly-iframe&gt;</pre>
       </div>
     </div>
     <h2>Events</h2>
     <p>
-      Events are emitted from the component so you can hook into the iframe's load event and the inner document onreadystatechange event.
+      Events are emitted from the component so you can hook into the iframe's load event.
     </p>
-    <div class="highlight">
-      <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src" @load="onLoad" @document-load="onDocumentLoad"&gt;&lt;/vue-friendly-iframe&gt;</pre>
+    <div>
+      <pre class="highlight">&lt;vue-friendly-iframe :src="example1Form.src" @load="onLoad"&gt;&lt;/vue-friendly-iframe&gt;</pre>
     </div>
     <h2>Example</h2>
     <div class="example-1">
@@ -86,7 +86,7 @@ Vue.component('vue-friendly-iframe', VueFriendlyIframe);</pre>
         <div class="iframe-loading" v-if="iframeLoading">
           iframe loading...
         </div>
-        <vue-friendly-iframe :style="{ 'display' : iframeLoading ? 'none' : 'block' }" :src="example1Form.src + '/' + example1Form.searchTerm" @load="onLoad" @iframe-load="onIframeLoad" @document-load="onDocumentLoad" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen="allowfullscreen"></vue-friendly-iframe>
+        <vue-friendly-iframe :style="{ 'display' : iframeLoading ? 'none' : 'block' }" :src="example1Form.src + '/' + example1Form.searchTerm" @load="onLoad" @iframe-load="onIframeLoad" frameborder="0" gesture="media" allow="encrypted-media"></vue-friendly-iframe>
       </div>
     </div>
   </section>

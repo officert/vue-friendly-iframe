@@ -44,14 +44,6 @@ export default {
     allow: {
       type: String,
       required: false
-    },
-    allowfullscreen: {
-      type: String,
-      required: false
-    },
-    scrolling: {
-      type: String,
-      required: false
     }
   },
   data() {
@@ -100,14 +92,11 @@ export default {
       this.iframeEl.setAttribute('iframe-src', this.src);
       this.iframeEl.setAttribute('crossorigin', this.crossorigin);
       this.iframeEl.setAttribute('target', this.target);
-      this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
+      this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px; border: none;');
       if (this.className) this.iframeEl.setAttribute('class', this.className);
       if (this.class) this.iframeEl.setAttribute('class', this.class);
-      if (this.frameborder) this.iframeEl.setAttribute('frameborder', this.frameborder);
       if (this.gesture) this.iframeEl.setAttribute('gesture', this.gesture);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
-      if (this.allowfullscreen) this.iframeEl.setAttribute('allowfullscreen', this.allowfullscreen);
-      if (this.scrolling) this.iframeEl.setAttribute('scrolling', this.scrolling);
 
       this.$el.appendChild(this.iframeEl);
 
@@ -124,12 +113,10 @@ export default {
         if (event.data === this.iframeLoadedMessage) {
           this.$emit('iframe-load');
 
-          this.iframeEl.setAttribute('style', 'visibility: visible;');
+          this.iframeEl.setAttribute('style', 'visibility: visible; border: none;');
         }
 
         if (event.data === this.iframeOnReadyStateChangeMessage) {
-          this.$emit('document-load');
-
           this.$emit('load');
         }
       }, false);

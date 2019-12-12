@@ -22,11 +22,6 @@ export default {
     },
     onIframeLoad() {
       console.log('iframe loaded');
-    },
-    onDocumentLoad() {
-      console.log('document loaded');
-
-      this.documentLoading = false;
     }
   }
 };

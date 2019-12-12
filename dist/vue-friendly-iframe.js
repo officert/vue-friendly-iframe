@@ -219,19 +219,11 @@ exports.default = {
       type: String,
       required: false
     },
-    frameborder: {
-      type: String,
-      required: false
-    },
     gesture: {
       type: String,
       required: false
     },
     allow: {
-      type: String,
-      required: false
-    },
-    allowfullscreen: {
       type: String,
       required: false
     },
