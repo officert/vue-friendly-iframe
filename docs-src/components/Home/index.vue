@@ -5,25 +5,9 @@
 export default {
   name: 'home',
   data() {
-    return {
-      example1Form: {
-        src: 'https://www.pexels.com/search',
-        searchTerm: 'tiger'
-      },
-      iframeLoading: true,
-      documentLoading: true
-    }
+    return {}
   },
-  methods: {
-    onLoad() {
-      console.log('iframe loaded');
-
-      this.iframeLoading = false;
-    },
-    onIframeLoad() {
-      console.log('iframe loaded');
-    }
-  }
+  methods: {}
 };
 </script>
 
