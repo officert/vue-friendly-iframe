@@ -16,6 +16,7 @@ export default {
     padding-top: 20px;
     position: sticky;
     top: 0;
+    height: 300px;
 
     ul {
         margin: 0;

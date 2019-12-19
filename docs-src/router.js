@@ -10,36 +10,42 @@ import Examples from './components/Examples';
 Vue.use(VueRouter);
 
 const routes = [{
-  name : 'Home',
+  name: 'Home',
   path: '*',
   redirect: '/home'
 }, {
-  name : 'Home',
+  name: 'Home',
   path: '/',
   redirect: '/home'
 }, {
-  name : 'Home',
+  name: 'Home',
   path: '/home',
   component: Home
 }, {
-  name : 'Install',
+  name: 'Install',
   path: '/install',
   component: Install
 }, {
-  name : 'Options',
+  name: 'Options',
   path: '/options',
   component: Options
 }, {
-  name : 'Events',
+  name: 'Events',
   path: '/events',
   component: Events
 }, {
-  name : 'Examples',
+  name: 'Examples',
   path: '/examples',
   component: Examples
 }];
 
 export default new VueRouter({
   base: '/vue-friendly-iframe/',
-  routes
+  routes,
+  scrollBehavior() {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
 });
