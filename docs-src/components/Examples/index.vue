@@ -10,8 +10,7 @@ export default {
         src: 'https://www.pexels.com/search',
         searchTerm: 'tiger'
       },
-      iframeLoading: true,
-      documentLoading: true
+      iframeLoading: true
     }
   },
   methods: {
@@ -26,3 +25,21 @@ export default {
   }
 };
 </script>
+
+<style lang="less">
+#examples {
+    .iframe-wrapper {
+        border: 1px solid gray;
+        height: 600px;
+
+        .vue-friendly-iframe {
+            height: 100%;
+            width: 100%;
+            iframe {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
+</style>

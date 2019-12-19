@@ -1,5 +1,5 @@
 /*!
- * vue-friendly-iframe v0.16.0 (https://github.com/officert/vue-friendly-iframe)
+ * vue-friendly-iframe v0.17.0 (https://github.com/officert/vue-friendly-iframe)
  * (c) 2019 Tim Officer
  * Released under the MIT License.
  */
@@ -95,7 +95,20 @@ var _FriendlyIframe2 = _interopRequireDefault(_FriendlyIframe);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _FriendlyIframe2.default;
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use({
+    install: function install(NewVue) {
+      NewVue.component('vue-friendly-iframe', _FriendlyIframe2.default);
+    }
+  });
+}
+
+exports.default = {
+  install: function install(NewVue) {
+    NewVue.component('vue-friendly-iframe', _FriendlyIframe2.default);
+  },
+  VueFriendlyIframe: _FriendlyIframe2.default
+};
 module.exports = exports['default'];
 
 /***/ }),
@@ -219,15 +232,15 @@ exports.default = {
       type: String,
       required: false
     },
+    frameborder: {
+      type: String,
+      required: false
+    },
     gesture: {
       type: String,
       required: false
     },
     allow: {
-      type: String,
-      required: false
-    },
-    scrolling: {
       type: String,
       required: false
     }
@@ -268,14 +281,11 @@ exports.default = {
       this.iframeEl.setAttribute('iframe-src', this.src);
       this.iframeEl.setAttribute('crossorigin', this.crossorigin);
       this.iframeEl.setAttribute('target', this.target);
-      this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px');
+      this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px; border: none;');
       if (this.className) this.iframeEl.setAttribute('class', this.className);
       if (this.class) this.iframeEl.setAttribute('class', this.class);
-      if (this.frameborder) this.iframeEl.setAttribute('frameborder', this.frameborder);
       if (this.gesture) this.iframeEl.setAttribute('gesture', this.gesture);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
-      if (this.allowfullscreen) this.iframeEl.setAttribute('allowfullscreen', this.allowfullscreen);
-      if (this.scrolling) this.iframeEl.setAttribute('scrolling', this.scrolling);
 
       this.$el.appendChild(this.iframeEl);
 
@@ -292,12 +302,10 @@ exports.default = {
         if (event.data === _this.iframeLoadedMessage) {
           _this.$emit('iframe-load');
 
-          _this.iframeEl.setAttribute('style', 'visibility: visible;');
+          _this.iframeEl.setAttribute('style', 'visibility: visible; border: none;');
         }
 
         if (event.data === _this.iframeOnReadyStateChangeMessage) {
-          _this.$emit('document-load');
-
           _this.$emit('load');
         }
       }, false);

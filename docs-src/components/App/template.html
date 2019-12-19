@@ -1,3 +1,24 @@
 <div id="app" class="">
-  <router-view></router-view>
+  <section class="page-header">
+    <div class="logo">
+      <img src="https://vuejs.org/images/logo.png" />
+    </div>
+    <h1 class="project-name">
+      vue-friendly-iframe
+    </h1>
+    <h2 class="project-tagline">
+      Vue.js component for creating dynamic async iframes.
+    </h2>
+    <div>
+      <a href="https://github.com/officert/vue-friendly-iframe" class="btn">View on GitHub</a>
+      <a href="https://github.com/officert/vue-friendly-iframe/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/officert/vue-friendly-iframe/tarball/master" class="btn">Download .tar.gz</a>
+    </div>
+  </section>
+  <div class="main-content">
+    <sidebar></sidebar>
+    <div class="right-panel">
+      <router-view></router-view>
+    </div>
+  </div>
 </div>
