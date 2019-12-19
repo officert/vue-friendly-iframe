@@ -33,15 +33,11 @@ export default {
       type: String,
       required: false
     },
-    frameborder: {
-      type: String,
-      required: false
-    },
-    gesture: {
-      type: String,
-      required: false
-    },
     allow: {
+      type: String,
+      required: false
+    },
+    name: {
       type: String,
       required: false
     }
@@ -73,7 +69,7 @@ export default {
           <body onload="window.location.href='${this.src}'; parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>
           <script>
             window.document.onreadystatechange = function () {
-              if(window.document.readyState === 'complete') {
+              if (window.document.readyState === 'complete') {
                 parent.postMessage('${this.iframeOnReadyStateChangeMessage}', '*')
               }
             };
@@ -89,14 +85,14 @@ export default {
     }, 200),
     initIframe() {
       this.iframeEl = document.createElement('iframe');
-      this.iframeEl.setAttribute('iframe-src', this.src);
-      this.iframeEl.setAttribute('crossorigin', this.crossorigin);
-      this.iframeEl.setAttribute('target', this.target);
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px; border: none;');
+      if (this.src) this.iframeEl.setAttribute('iframe-src', this.src);
       if (this.className) this.iframeEl.setAttribute('class', this.className);
       if (this.class) this.iframeEl.setAttribute('class', this.class);
-      if (this.gesture) this.iframeEl.setAttribute('gesture', this.gesture);
+      if (this.crossorigin) this.iframeEl.setAttribute('crossorigin', this.crossorigin);
+      if (this.target) this.iframeEl.setAttribute('target', this.target);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
+      if (this.name) this.iframeEl.setAttribute('name', this.name);
 
       this.$el.appendChild(this.iframeEl);
 

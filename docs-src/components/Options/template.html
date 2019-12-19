@@ -1,0 +1,36 @@
+<div id="options">
+  <h2>Options</h2>
+  <table class="options-table">
+    <thead>
+      <tr>
+        <th>
+          Param
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Default
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="param in params">
+        <td>
+          <code>{{ param.name }}</code>
+        </td>
+        <td>
+          <code class="type">{{ param.type }}</code>
+        </td>
+        <td v-html="param.desc">
+        </td>
+        <td>
+          <code v-if="param.default !== null && param.default !== undefined">{{ param.default }}</code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

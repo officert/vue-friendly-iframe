@@ -197,7 +197,7 @@ button.hide-loader .hidden {
 .main-content p {
     margin-bottom: 1em;
 }
-.main-content code {
+code {
     padding: 2px 4px;
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 0.9rem;
@@ -205,7 +205,7 @@ button.hide-loader .hidden {
     background-color: #f3f6fa;
     border-radius: 0.3rem;
 }
-.main-content pre {
+pre {
     padding: 0.8rem;
     margin-top: 0;
     margin-bottom: 1rem;
@@ -215,26 +215,27 @@ button.hide-loader .hidden {
     background-color: #f3f6fa;
     border: solid 1px #dce6f0;
     border-radius: 0.3rem;
+
+    > code {
+        padding: 0;
+        margin: 0;
+        font-size: 0.9rem;
+        color: #567482;
+        word-break: normal;
+        white-space: pre;
+        background: transparent;
+        border: 0;
+    }
 }
-.main-content pre > code {
-    padding: 0;
-    margin: 0;
-    font-size: 0.9rem;
-    color: #567482;
-    word-break: normal;
-    white-space: pre;
-    background: transparent;
-    border: 0;
-}
-.main-content .highlight {
+.highlight {
     margin-bottom: 1rem;
 }
-.main-content .highlight pre {
+.highlight pre {
     margin-bottom: 0;
     word-break: normal;
 }
-.main-content .highlight pre,
-.main-content pre {
+.highlight pre,
+pre {
     padding: 0.8rem;
     overflow: auto;
     font-size: 0.9rem;
@@ -242,8 +243,8 @@ button.hide-loader .hidden {
     border-radius: 0.3rem;
     -webkit-overflow-scrolling: touch;
 }
-.main-content pre code,
-.main-content pre tt {
+pre code,
+pre tt {
     display: inline;
     max-width: initial;
     padding: 0;
@@ -254,10 +255,10 @@ button.hide-loader .hidden {
     background-color: transparent;
     border: 0;
 }
-.main-content pre code:after,
-.main-content pre code:before,
-.main-content pre tt:after,
-.main-content pre tt:before {
+pre code:after,
+pre code:before,
+pre tt:after,
+pre tt:before {
     content: normal;
 }
 .main-content ol,
@@ -436,5 +437,16 @@ a {
         flex: 1;
         min-height: 600px;
     }
+}
+
+code {
+    &.type {
+        margin-left: 10px;
+        color: blue;
+    }
+}
+
+.options-table {
+    margin-bottom: 25px;
 }
 </style>

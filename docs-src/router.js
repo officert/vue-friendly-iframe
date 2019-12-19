@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import Home from './components/Home';
 import Install from './components/Install';
+import Options from './components/Options';
 import Events from './components/Events';
 import Examples from './components/Examples';
 
@@ -24,6 +25,10 @@ const routes = [{
   name : 'Install',
   path: '/install',
   component: Install
+}, {
+  name : 'Options',
+  path: '/options',
+  component: Options
 }, {
   name : 'Events',
   path: '/events',
