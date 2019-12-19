@@ -232,15 +232,11 @@ exports.default = {
       type: String,
       required: false
     },
-    frameborder: {
-      type: String,
-      required: false
-    },
-    gesture: {
-      type: String,
-      required: false
-    },
     allow: {
+      type: String,
+      required: false
+    },
+    name: {
       type: String,
       required: false
     }
@@ -267,7 +263,7 @@ exports.default = {
     },
     setIframeUrl: function setIframeUrl() {
       var iframeDoc = this.iframeEl.contentWindow.document;
-      iframeDoc.open().write('\n          <body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>\n          <script>\n            window.document.onreadystatechange = function () {\n              if(window.document.readyState === \'complete\') {\n                parent.postMessage(\'' + this.iframeOnReadyStateChangeMessage + '\', \'*\')\n              }\n            };\n          </script>\n          ');
+      iframeDoc.open().write('\n          <body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>\n          <script>\n            window.document.onreadystatechange = function () {\n              if (window.document.readyState === \'complete\') {\n                parent.postMessage(\'' + this.iframeOnReadyStateChangeMessage + '\', \'*\')\n              }\n            };\n          </script>\n          ');
 
       iframeDoc.close();
     },
@@ -278,14 +274,14 @@ exports.default = {
     }, 200),
     initIframe: function initIframe() {
       this.iframeEl = document.createElement('iframe');
-      this.iframeEl.setAttribute('iframe-src', this.src);
-      this.iframeEl.setAttribute('crossorigin', this.crossorigin);
-      this.iframeEl.setAttribute('target', this.target);
       this.iframeEl.setAttribute('style', 'visibility: hidden; position: absolute; top: -99999px; border: none;');
+      if (this.src) this.iframeEl.setAttribute('iframe-src', this.src);
       if (this.className) this.iframeEl.setAttribute('class', this.className);
       if (this.class) this.iframeEl.setAttribute('class', this.class);
-      if (this.gesture) this.iframeEl.setAttribute('gesture', this.gesture);
+      if (this.crossorigin) this.iframeEl.setAttribute('crossorigin', this.crossorigin);
+      if (this.target) this.iframeEl.setAttribute('target', this.target);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
+      if (this.name) this.iframeEl.setAttribute('name', this.name);
 
       this.$el.appendChild(this.iframeEl);
 
