@@ -1,8 +1,17 @@
 import VueFriendlyIframe from './components/FriendlyIframe';
 
-// // expose component to global scope
-// if (typeof window !== 'undefined' && window.Vue) {
-//   Vue.component('vue-friendly-iframe', VueFriendlyIframe)
-// }
+// expose component and service to global scope
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use({
+    install(NewVue) {
+      NewVue.component('vue-friendly-iframe', VueFriendlyIframe);
+    }
+  });
+}
 
-export default VueFriendlyIframe;
+export default {
+  install: function(NewVue) {
+    NewVue.component('vue-friendly-iframe', VueFriendlyIframe);
+  },
+  VueFriendlyIframe
+};
