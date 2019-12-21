@@ -42,10 +42,17 @@ const routes = [{
 export default new VueRouter({
   base: '/vue-friendly-iframe/',
   routes,
-  scrollBehavior() {
+  scrollBehavior(to) {
+    if (to.name === 'Home') {
+      return {
+        x: 0,
+        y: 0
+      };
+    }
+
     return {
       x: 0,
-      y: 0
-    }
+      y: 550
+    };
   }
 });
