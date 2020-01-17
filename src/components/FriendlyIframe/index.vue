@@ -62,6 +62,9 @@ export default {
       }
     },
     setIframeUrl() {
+      if (this.iframeEl.contentWindow === null) {
+        setTimeout(this.setIframeUrl)
+      }
       const iframeDoc = this.iframeEl.contentWindow.document;
       iframeDoc.open()
         .write(
