@@ -1,6 +1,6 @@
 /*!
  * vue-friendly-iframe v0.17.0 (https://github.com/officert/vue-friendly-iframe)
- * (c) 2019 Tim Officer
+ * (c) 2020 Tim Officer
  * Released under the MIT License.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -262,6 +262,9 @@ exports.default = {
       }
     },
     setIframeUrl: function setIframeUrl() {
+      if (this.iframeEl.contentWindow === null) {
+        setTimeout(this.setIframeUrl);
+      }
       var iframeDoc = this.iframeEl.contentWindow.document;
       iframeDoc.open().write('\n          <body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>\n          <script>\n            window.document.onreadystatechange = function () {\n              if (window.document.readyState === \'complete\') {\n                parent.postMessage(\'' + this.iframeOnReadyStateChangeMessage + '\', \'*\')\n              }\n            };\n          </script>\n          ');
 
