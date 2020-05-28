@@ -66,7 +66,7 @@ export default {
       iframeDoc.open()
         .write(
           `
-          <body onload="window.location.href='${this.src}'; parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>
+          <body onload="window.location.replace('${this.src}'); parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>
           <script>
             window.document.onreadystatechange = function () {
               if (window.document.readyState === 'complete') {
