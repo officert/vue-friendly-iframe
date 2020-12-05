@@ -266,6 +266,10 @@ exports.default = {
       }
     },
     setIframeUrl: function setIframeUrl() {
+      if (this.iframeEl.contentWindow === null) {
+        setTimeout(this.setIframeUrl);
+        return;
+      }
       var iframeDoc = this.iframeEl.contentWindow.document;
       iframeDoc.open().write('\n          <body onload="window.location.replace(\'' + this.src + '\'); parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>\n          <script>\n            window.document.onreadystatechange = function () {\n              if (window.document.readyState === \'complete\') {\n                parent.postMessage(\'' + this.iframeOnReadyStateChangeMessage + '\', \'*\')\n              }\n            };\n          </script>\n          ');
 
