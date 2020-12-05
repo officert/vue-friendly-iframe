@@ -40,6 +40,10 @@ export default {
     name: {
       type: String,
       required: false
+    },
+    title: {
+      type: String,
+      required: false
     }
   },
   data() {
@@ -93,6 +97,7 @@ export default {
       if (this.target) this.iframeEl.setAttribute('target', this.target);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
       if (this.name) this.iframeEl.setAttribute('name', this.name);
+      if (this.title) this.iframeEl.setAttribute('title', this.title);
 
       this.$el.appendChild(this.iframeEl);
 

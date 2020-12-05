@@ -36,6 +36,11 @@ export default {
         type: 'String',
         desc: 'Iframe\'s name attribute',
         default: null
+      }, {
+        name: 'title',
+        type: 'String',
+        desc: 'Iframe\'s title attribute',
+        default: null
       }]
     }
   },
