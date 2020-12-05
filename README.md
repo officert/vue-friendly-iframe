@@ -1,5 +1,5 @@
 # vue-friendly-iframe
-> Vue js component for creating dynamic async iframes based on Aaron Peter's article: http://www.aaronpeters.nl/blog/iframe-loading-techniques-performance?%3E#dynamic
+> Vue js component for creating dynamic async iframes based on Aaron Peter's article: http://www.aaronpeters.nl/blog/iframe-loading-techniques-performance
 
 [![npm version](https://badge.fury.io/js/vue-friendly-iframe.svg)](https://badge.fury.io/js/vue-friendly-iframe)
 
