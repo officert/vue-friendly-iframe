@@ -40,6 +40,10 @@ export default {
     name: {
       type: String,
       required: false
+    },
+    title: {
+      type: String,
+      required: false
     }
   },
   data() {
@@ -70,7 +74,7 @@ export default {
       iframeDoc.open()
         .write(
           `
-          <body onload="window.location.href='${this.src}'; parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>
+          <body onload="window.location.replace('${this.src}'); parent.postMessage('${this.iframeLoadedMessage}', '*')"></body>
           <script>
             window.document.onreadystatechange = function () {
               if (window.document.readyState === 'complete') {
@@ -97,6 +101,7 @@ export default {
       if (this.target) this.iframeEl.setAttribute('target', this.target);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
       if (this.name) this.iframeEl.setAttribute('name', this.name);
+      if (this.title) this.iframeEl.setAttribute('title', this.title);
 
       this.$el.appendChild(this.iframeEl);
 

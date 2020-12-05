@@ -1,5 +1,5 @@
 /*!
- * vue-friendly-iframe v0.17.0 (https://github.com/officert/vue-friendly-iframe)
+ * vue-friendly-iframe v0.18.0 (https://github.com/officert/vue-friendly-iframe)
  * (c) 2020 Tim Officer
  * Released under the MIT License.
  */
@@ -239,6 +239,10 @@ exports.default = {
     name: {
       type: String,
       required: false
+    },
+    title: {
+      type: String,
+      required: false
     }
   },
   data: function data() {
@@ -267,7 +271,7 @@ exports.default = {
         return;
       }
       var iframeDoc = this.iframeEl.contentWindow.document;
-      iframeDoc.open().write('\n          <body onload="window.location.href=\'' + this.src + '\'; parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>\n          <script>\n            window.document.onreadystatechange = function () {\n              if (window.document.readyState === \'complete\') {\n                parent.postMessage(\'' + this.iframeOnReadyStateChangeMessage + '\', \'*\')\n              }\n            };\n          </script>\n          ');
+      iframeDoc.open().write('\n          <body onload="window.location.replace(\'' + this.src + '\'); parent.postMessage(\'' + this.iframeLoadedMessage + '\', \'*\')"></body>\n          <script>\n            window.document.onreadystatechange = function () {\n              if (window.document.readyState === \'complete\') {\n                parent.postMessage(\'' + this.iframeOnReadyStateChangeMessage + '\', \'*\')\n              }\n            };\n          </script>\n          ');
 
       iframeDoc.close();
     },
@@ -286,6 +290,7 @@ exports.default = {
       if (this.target) this.iframeEl.setAttribute('target', this.target);
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
       if (this.name) this.iframeEl.setAttribute('name', this.name);
+      if (this.title) this.iframeEl.setAttribute('title', this.title);
 
       this.$el.appendChild(this.iframeEl);
 

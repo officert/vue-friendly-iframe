@@ -1,6 +1,6 @@
 {
   "name": "vue-friendly-iframe",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Vue component for creating dynamic async iframes",
   "main": "dist/vue-friendly-iframe.js",
   "scripts": {
