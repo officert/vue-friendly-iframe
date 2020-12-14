@@ -25,9 +25,16 @@ npm install vue-friendly-iframe --save-dev
 ```
 
 ```javascript
+import Vue from 'vue';
 import VueFriendlyIframe from 'vue-friendly-iframe';
 
-Vue.component('vue-friendly-iframe', VueFriendlyIframe);
+Vue.use(VueFriendlyIframe);
+```
+
+Add the component to your HTML:
+
+```html
+<vue-friendly-iframe :src="example1Form.src" @load="onLoad"></vue-friendly-iframe>
 ```
 
 ### Contributing
