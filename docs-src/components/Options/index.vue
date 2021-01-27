@@ -41,6 +41,11 @@ export default {
         type: 'String',
         desc: 'Iframe\'s title attribute',
         default: null
+      }, {
+        name: 'sandbox',
+        type: 'String',
+        desc: 'Iframe\'s sandbox attribute',
+        default: null
       }]
     }
   },

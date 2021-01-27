@@ -44,6 +44,10 @@ export default {
     title: {
       type: String,
       required: false
+    },
+    sandbox: {
+      type: String,
+      required: false
     }
   },
   data() {
@@ -102,6 +106,7 @@ export default {
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
       if (this.name) this.iframeEl.setAttribute('name', this.name);
       if (this.title) this.iframeEl.setAttribute('title', this.title);
+      if (this.sandbox) this.iframeEl.setAttribute('sandbox', this.sandbox);
 
       this.$el.appendChild(this.iframeEl);
 
