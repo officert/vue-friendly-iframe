@@ -1,6 +1,6 @@
 /*!
- * vue-friendly-iframe v0.19.0 (https://github.com/officert/vue-friendly-iframe)
- * (c) 2020 Tim Officer
+ * vue-friendly-iframe v0.20.0 (https://github.com/officert/vue-friendly-iframe)
+ * (c) 2021 Tim Officer
  * Released under the MIT License.
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -243,6 +243,10 @@ exports.default = {
     title: {
       type: String,
       required: false
+    },
+    sandbox: {
+      type: String,
+      required: false
     }
   },
   data: function data() {
@@ -291,6 +295,7 @@ exports.default = {
       if (this.allow) this.iframeEl.setAttribute('allow', this.allow);
       if (this.name) this.iframeEl.setAttribute('name', this.name);
       if (this.title) this.iframeEl.setAttribute('title', this.title);
+      if (this.sandbox) this.iframeEl.setAttribute('sandbox', this.sandbox);
 
       this.$el.appendChild(this.iframeEl);
 
