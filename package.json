@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/officert/vue-friendly-iframe#readme",
   "dependencies": {
-    "uuid": "3.1.0"
+    "uuid": "14.0.0"
   },
   "peerDependecies": {
     "vue": "^2.5.16"
